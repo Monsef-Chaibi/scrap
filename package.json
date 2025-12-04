@@ -1,0 +1,27 @@
+{
+  "name": "kwrds-scraper-api",
+  "version": "1.0.0",
+  "description": "Production-ready keyword scraper API using Puppeteer for Render.com",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node src/index.js"
+  },
+  "keywords": [
+    "scraper",
+    "puppeteer",
+    "api",
+    "keywords",
+    "kwrds"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "puppeteer": "^21.6.0"
+  }
+}
