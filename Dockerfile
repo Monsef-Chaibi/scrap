@@ -1,8 +1,8 @@
 FROM node:18-slim
 
-# Install Chromium and dependencies
+# Install Chromium (Render-friendly path: /usr/bin/chromium-browser)
 RUN apt-get update && apt-get install -y \
-    chromium \
+    chromium-browser \
     ca-certificates \
     fonts-liberation \
     libasound2 \
@@ -28,8 +28,9 @@ RUN apt-get update && apt-get install -y \
     wget \
     --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
-# Puppeteer chromium path
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+# Puppeteer environment (IMPORTANT)
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 WORKDIR /app
 

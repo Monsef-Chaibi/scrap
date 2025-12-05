@@ -14,20 +14,20 @@ async function scrapeKeyword(keyword) {
   try {
     console.log(`\n🔍 Scraping keyword: "${keyword}"...`);
     
-    // Launch browser
-   browser = await puppeteer.launch({
-  headless: "new",
-  executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium",
-  args: [
-    "--no-sandbox",
-    "--disable-setuid-sandbox",
-    "--disable-dev-shm-usage",
-    "--disable-gpu",
-    "--disable-software-rasterizer",
-    "--disable-extensions",
-    "--single-process",
-  ],
-});
+    // Launch browser using system Chromium (Render-friendly)
+    browser = await puppeteer.launch({
+      headless: true,
+      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || '/usr/bin/chromium',
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-gpu',
+        '--disable-software-rasterizer',
+        '--disable-extensions',
+        '--single-process',
+      ],
+    });
 
 
     const page = await browser.newPage();
@@ -98,8 +98,6 @@ async function scrapeKeyword(keyword) {
         }
       }
     }
-
-    await browser.close();
 
     if (results.length > 0) {
       console.log('✅ Data extracted successfully!');
