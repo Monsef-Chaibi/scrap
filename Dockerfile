@@ -1,8 +1,8 @@
 FROM node:18-slim
 
-# Install Chromium (Render-friendly path: /usr/bin/chromium-browser)
+# Install Chromium from Debian (Render free plan compatible)
 RUN apt-get update && apt-get install -y \
-    chromium-browser \
+    chromium \
     ca-certificates \
     fonts-liberation \
     libasound2 \
@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y \
     --no-install-recommends && rm -rf /var/lib/apt/lists/*
 
 # Puppeteer environment (IMPORTANT)
-ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser
+ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
 ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
 
 WORKDIR /app
