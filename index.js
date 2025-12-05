@@ -1,6 +1,12 @@
 const express = require('express');
 const puppeteer = require('puppeteer');
 const cheerio = require('cheerio');
+const { File } = require('undici');
+
+// Polyfill File for Node 18 (needed by undici/web-fetch APIs)
+if (typeof global.File === 'undefined') {
+  global.File = File;
+}
 
 const app = express();
 const PORT = process.env.PORT || 3000;
